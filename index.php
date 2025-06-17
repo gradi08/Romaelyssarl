@@ -34,10 +34,10 @@
             <a class="nav-link" href="#">Menages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Service nettoyage</a>
+            <a class="nav-link" href="test1.php">Service nettoyage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">A propos</a>
+            <a class="nav-link" href="test.php">A propos</a>
           </li>
         </ul>
       </div>
@@ -72,7 +72,7 @@
       Pourquoi nous ?
       <span class="line-right ms-3"></span>
     </h2>
-    <p class="text-muted fs-5 fw-semibold mb-5">
+    <p class="text-muted fs-5 fw-semibold mb-5 ">
       Chez Romaelyss Sarl, Nous Croyons Que Le Succès De Votre<br />
       Entreprise Repose Sur Des Talents Bien Choisis Et Bien Accompagnés.
     </p>
@@ -80,7 +80,7 @@
     <div class="row g-4">
       <!-- Bloc 1 -->
       <div class="col-md-4">
-        <div class="card text-white text-center h-100" style="background-color: #ff0000;">
+        <div class="card text-white text-center h-100 bg-danger" style="background-color: #ff0000;">
           <div class="card-body">
             <i class="fas fa-briefcase fa-2x mb-3"></i>
             <h5 class="card-title fw-bold">Professionnels</h5>
@@ -102,7 +102,7 @@
 
       <!-- Bloc 3 -->
       <div class="col-md-4">
-        <div class="card text-white text-center h-100" style="background-color: #ff0000;">
+        <div class="card text-white text-center h-100 bg-danger" style="background-color: #ff0000;">
           <div class="card-body">
             <i class="fas fa-user-cog fa-2x mb-3"></i>
             <h5 class="card-title fw-bold">Experience</h5>
@@ -164,7 +164,210 @@
     </div>
   </div>
 </section>
+<section class="bg-light py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold text-danger mb-3 position-relative d-inline-block">
+      <span class="line-left me-3"></span>
+      Nos services
+      <span class="line-right ms-3"></span>
+    </h2>
+    <div class="services-subtitle">
+    Forts de notre expertise et de notre engagement envers l’excellence, nous offrons des services adaptés à vos exigences, que ce soit pour des espaces résidentiels, commerciaux ou industriels.
+  </div>
 
+    <div class="row g-4">
+      <!-- Bloc 1 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100 bg-danger" >
+          <div class="card-body">
+            <i class="fas fa-user fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Recrutement</h5>
+            <p class="card-text">Recrutement du personnel permanent, temporaire ou contractuel. Évaluation des compétences techniques et comportementales. Accompagnement dans les processus de sélection.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 2 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100" style="background-color: #333;">
+          <div class="card-body">
+            <i class="fas fa-home fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Service à domicile</h5>
+            <p class="card-text">Nous mettons à votre disposition des professionnels qualifiés pour vous accompagner au quotidien.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 3 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100" style="background-color: #333;">
+          <div class="card-body">
+            <i class="fas fa-map-marker-alt fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Placement</h5>
+            <p class="card-text">Placement rapide et efficace des talents dans divers secteurs d’activité. Gestion des contrats pour des missions temporaires ou à long terme.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+       <!-- Bloc 4 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100 bg-danger">
+          <div class="card-body">
+            <i class="fas fa-paint-roller fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Service de peinture</h5>
+            <p class="card-text">Romaelyss SARL vous propose des services professionnels de peinture intérieure et extérieure, destinés aux particuliers, entreprises et collectivités.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 5 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100 bg-danger">
+          <div class="card-body">
+            <i class="fas fa-users-cog fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Gestion du personnel</h5>
+            <p class="card-text">Externalisation de la gestion des ressources humaines (paie, administration, etc.). Mise en place des programmes de formation pour développer les compétences des employés.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 6 -->
+      <div class="col-md-6">
+        <div class="card text-white text-center h-100" style="background-color: #333;">
+          <div class="card-body">
+            <i class="fas fa-money-bill-wave fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Gestion de la paie</h5>
+            <p class="card-text">Notre service de payroll sur mesure vous permet de vous concentrer sur notre activité, pendant que nous nous chargeons de l’ensemble du processus de paie de vos collaborateurs.</p>
+            <div class="arrow-down"><a href="">&#x25BC;</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-light py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold text-danger mb-3 position-relative d-inline-block">
+      <span class="line-left me-3"></span>
+      Nos atouts
+      <span class="line-right ms-3"></span>
+    </h2>
+    <div class="row g-4">
+      <!-- Bloc 1 -->
+      <div class="col-md-3">
+        <div class="card text-white text-center h-100 bg-danger" >
+          <div class="card-body">
+            <i class="fas fa-gem fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Expertise Sectorielle</h5>
+            <p class="card-text">Une Connaissance Approfondie Des Besoins Et Spécificités Des Différents Secteurs D’activité.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 2 -->
+      <div class="col-md-3">
+        <div class="card text-white text-center h-100" style="background-color: #333;">
+          <div class="card-body">
+            <i class="fas fa-gem fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Approche Humaine<</h5>
+            <p class="card-text">Une Attention Particulière Portée Aux Relations Humaines Pour Garantir Des Partenariats Solides Et Durables.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloc 3 -->
+      <div class="col-md-3">
+        <div class="card text-white text-center h-100 bg-danger" >
+          <div class="card-body">
+            <i class="fas fa-gem fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Technologie Et Innovation</h5>
+            <p class="card-text">Utilisation Des Outils Les Plus Avancés Pour Identifier, Évaluer Et Suivre Les Talents</p>
+          </div>
+        </div>
+      </div>
+       <!-- Bloc 4 -->
+      <div class="col-md-3">
+        <div class="card text-white text-center h-100 " style="background-color: #333;">
+          <div class="card-body">
+            <i class="fas fa-gem fa-2x mb-3"></i>
+            <h5 class="card-title fw-bold">Réseau Étendu</h5>
+            <p class="card-text">Une Base Des Données Riche Et Diversifiée, Ainsi Qu’un Vaste Réseau Professionnel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Secteurs d’intervention -->
+  <div class="container">
+    <h2 class="section-title text-danger">Nos secteurs d’intervention</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Industrie Et Ingénierie</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Santé Et Services</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Commerce Et Distribution</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Commerce Et Distribution</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Construction</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Finance Et Banque</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Douane Et Transit</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Agriculture</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Transport Et Logistique</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Technologies De L’information</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ressources disponibles -->
+  <div class="container">
+    <h2 class="section-title text-danger">Nous mettons à votre disposition</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Paysagistes Et Jardiniers</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Personnel De Ménage</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Techniciens De Surface</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Secrétaire De Direction</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Caissiers Compteurs</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Agents Commerciaux</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Électricien</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Plombier</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Nounou</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Manutentionnaire</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Chauffeurs</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Informaticiens</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Comptables Et Financiers</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Gestionnaire Du Personnel</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Personnel Médical</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Cadres Nationaux Et Expatriés</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Personnel Paramédical</li>
+          <li class="list-group-item"><i class="fas fa-circle-check icon-check"></i>Agents Nationaux Et Expatriés</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- <footer class="bg-dark text-white text-center py-3">
     <p>&copy; 2023 Romaelyssarl. Tous droits réservés.</p>
