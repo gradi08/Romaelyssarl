@@ -289,7 +289,7 @@
             <a class="nav-link" href="nettoyage.php">Service nettoyage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">A propos</a>
+            <a class="nav-link" href="apropos.php">A propos</a>
           </li>
         </ul>
       </div>
