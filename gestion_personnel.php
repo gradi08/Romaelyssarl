@@ -72,13 +72,13 @@
             <a class="nav-link" href="index.php#service">Nos services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Jobs</a>
+            <a class="nav-link" href="nos_offres.php">Jobs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menages</a>
+            <a class="nav-link" href="service_domicile.php">Menages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Service nettoyage</a>
+            <a class="nav-link" href="nettoyage.php">Service nettoyage</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">A propos</a>

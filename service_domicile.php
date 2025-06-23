@@ -72,13 +72,13 @@
             <a class="nav-link" href="index.php#service">Nos services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Jobs</a>
+            <a class="nav-link" href="nos_offres.php">Jobs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Menages</a>
+            <a class="nav-link" href="service_domicile.php">Menages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Service nettoyage</a>
+            <a class="nav-link" href="nettoyage.php">Service nettoyage</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">A propos</a>
@@ -92,6 +92,7 @@
     <div class="container">
       <h1>Service à domicile</h1>
       <p class="lead mt-3">Nous mettons à votre disposition des professionnels qualifiés pour vous accompagner au quotidien.</p>
+      <p class="lead mt-3"> Que ce soit pour l'entretien de votre maison, la garde de vos enfants, ou l'entretien de vos espaces verts, nous avons des solutions adaptées à vos besoins.</p>
     </div>
   </section>
 
