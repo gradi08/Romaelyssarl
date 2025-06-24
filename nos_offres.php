@@ -1,3 +1,31 @@
+
+<?php
+require_once 'includes/config.php';
+require_once 'includes/functions.php';
+
+// Récupération des offres valides
+$stmt = $pdo->prepare("SELECT * FROM jobs 
+                      WHERE published = 1 
+                      AND expiry_date >= CURDATE() 
+                      ORDER BY created_at DESC");
+$stmt->execute();
+$jobs = $stmt->fetchAll();
+
+// Filtrage par catégorie si paramètre existant
+$current_category = $_GET['category'] ?? null;
+if ($current_category) {
+    $stmt = $pdo->prepare("SELECT * FROM jobs 
+                          WHERE published = 1 
+                          AND expiry_date >= CURDATE()
+                          AND category = ?
+                          ORDER BY created_at DESC");
+    $stmt->execute([$current_category]);
+    $jobs = $stmt->fetchAll();
+}
+
+// Récupération des catégories uniques pour le filtre
+$categories = $pdo->query("SELECT DISTINCT category FROM jobs")->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -242,91 +270,53 @@
     <section class="offers-section" id="offres">
     <h2 class="section-title">Découvrez nos opportunités</h2>
     
-    <div class="offers-grid-container">
-        <!-- Offre 1 -->
-        <div class="offer-card">
-            <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" 
-                 alt="Informaticien" class="offer-image">
-            <div class="offer-content">
-                <h3 class="offer-title">Informaticien</h3>
-                <div class="offer-expiry">
-                    <i class="bi bi-calendar-check"></i> Exp: 28/05/2025
-                </div>
-                <p class="offer-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <a href="#" class="offer-button">Postuler</a>
-            </div>
+    <!-- Filtre par catégorie -->
+        <div class="category-filter mb-4">
+            <a href="jobs.php" class="btn btn-outline-secondary">Toutes</a>
+            <?php foreach ($categories as $cat): ?>
+                <a href="jobs.php?category=<?= urlencode($cat['category']) ?>" 
+                   class="btn btn-outline-primary">
+                   <?= htmlspecialchars($cat['category']) ?>
+                </a>
+            <?php endforeach; ?>
         </div>
         
-        <!-- Offre 2 -->
-        <div class="offer-card">
-            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2022&q=80" 
-                 alt="Secrétaire" class="offer-image">
-            <div class="offer-content">
-                <h3 class="offer-title">Secrétaire</h3>
-                <div class="offer-expiry">
-                    <i class="bi bi-calendar-check"></i> Exp: 28/05/2025
+        <!-- Liste des offres -->
+        <div class="row">
+            <?php foreach ($jobs as $job): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <!-- Image de l'offre -->
+                        <?php if ($job['image_path']): ?>
+                            <img src="<?= htmlspecialchars($job['image_path']) ?>" 
+                                 class="card-img-top" 
+                                 alt="<?= htmlspecialchars($job['title']) ?>">
+                        <?php endif; ?>
+                        
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($job['title']) ?></h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <?= htmlspecialchars($job['category']) ?>
+                            </h6>
+                            <p class="card-text">
+                                <?= nl2br(htmlspecialchars(shortenText($job['description'], 150))) ?>
+
+                            </p>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    Expire le: <?= date('d/m/Y', strtotime($job['expiry_date'])) ?>
+                                </small>
+                                <a href="apply.php?job_id=<?= $job['id'] ?>" 
+                                   class="btn btn-primary">
+                                   Postuler
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="offer-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <a href="#" class="offer-button">Postuler</a>
-            </div>
+            <?php endforeach; ?>
         </div>
-        
-        <!-- Offre 3 -->
-        <div class="offer-card">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                 alt="Agent de sécurité" class="offer-image">
-            <div class="offer-content">
-                <h3 class="offer-title">Agent de sécurité</h3>
-                <div class="offer-expiry">
-                    <i class="bi bi-calendar-check"></i> Exp: 28/05/2025
-                </div>
-                <p class="offer-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <a href="#" class="offer-button">Postuler</a>
-            </div>
-        </div>
-        
-        <!-- Offre 4 -->
-        <div class="offer-card">
-            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                 alt="Nettoyeur de surface" class="offer-image">
-            <div class="offer-content">
-                <h3 class="offer-title">Nettoyeur de surface</h3>
-                <div class="offer-expiry">
-                    <i class="bi bi-calendar-check"></i> Exp: 28/05/2025
-                </div>
-                <p class="offer-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <a href="#" class="offer-button">Postuler</a>
-            </div>
-        </div>
-        
-        <!-- Offre 5 -->
-        <!-- <div class="offer-card">
-            <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a9d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                 alt="Électricien" class="offer-image">
-            <div class="offer-content">
-                <h3 class="offer-title">Électricien</h3>
-                <div class="offer-expiry">
-                    <i class="bi bi-calendar-check"></i> Exp: 28/05/2025
-                </div>
-                <p class="offer-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <a href="#" class="offer-button">Postuler</a>
-            </div>
-        </div> -->
     </div>
 </section>
 <footer class="bg-dark text-white pt-5 pb-4">

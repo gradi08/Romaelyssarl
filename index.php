@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -267,8 +271,13 @@
       </h3>
       <h1 style="color:red;">DES TALENTS BIEN CHOISIS ET ACCOMPANÉS</h1>
       <div>
-        <a href="login.php" class="btn custom-btn me-2">Connexion</a>
-        <a href="register.php" class="btn custom-btn">Créer un compte</a>
+        <?php if (isset($_SESSION['user_id'])): ?>
+          <a href="logout.php" class="btn custom-btn me-2">Déconnexion</a>
+          <a href="profile.php" class="btn custom-btn">Mon compte</a>
+        <?php else: ?>
+          <a href="login.php" class="btn custom-btn me-2">Connexion</a>
+          <a href="register.php" class="btn custom-btn">Créer un compte</a>
+        <?php endif; ?>
       </div>
       <div class="social-icons text-center py-4">
         <a href="#" class="bt text-white fs-3 me-3"><i class="fab fa-facebook-f"></i></a>

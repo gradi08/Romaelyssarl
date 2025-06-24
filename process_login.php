@@ -70,7 +70,7 @@ try {
     }
 
     // 9. Redirection selon le type d'utilisateur
-    $redirect = $user['user_type'] === 'admin' ? 'admin/dashboard.php' : 'index.php';
+    $redirect = $user['user_type'] === 'admin' ? 'add.php' : 'index.php';
     header("Location: $redirect");
     exit();
 

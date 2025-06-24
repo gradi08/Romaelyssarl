@@ -1,4 +1,11 @@
 <?php
+function shortenText($text, $max_length = 100) {
+    if (strlen($text) > $max_length) {
+        return substr($text, 0, $max_length) . '...';
+    }
+    return $text;
+}
+
 function isLoggedIn() {
     return isset($_SESSION['user_id']);
 }

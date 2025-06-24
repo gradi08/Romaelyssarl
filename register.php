@@ -1,3 +1,31 @@
+<?php
+// Ajoutez ce code en haut du fichier register.php (avant le DOCTYPE)
+session_start();
+
+// Récupération des erreurs et des anciennes données
+$errors = $_SESSION['register_errors'] ?? [];
+$old_data = $_SESSION['old_data'] ?? [];
+
+// Suppression des données de session après récupération
+unset($_SESSION['register_errors']);
+unset($_SESSION['old_data']);
+
+// Fonction pour afficher les classes d'erreur Bootstrap
+function get_error_class(array $errors, string $field): string {
+    return isset($errors[$field]) ? 'is-invalid' : '';
+}
+
+// Fonction pour afficher les messages d'erreur
+function get_error_message(array $errors, string $field): string {
+    return isset($errors[$field]) ? '<div class="invalid-feedback">' . htmlspecialchars($errors[$field]) . '</div>' : '';
+}
+?>
+
+<!-- Dans le formulaire, modifiez les champs comme ceci : -->
+
+
+<!-- Répétez pour les autres champs du formulaire -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -63,8 +91,11 @@
                         <label for="username" class="form-label required-field">Nom d'utilisateur</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" class="form-control" id="username" name="username" required
-                                   placeholder="Votre nom d'utilisateur" minlength="3" maxlength="50">
+                            <input type="text" class="form-control <?= get_error_class($errors, 'username') ?>" 
+                                id="username" name="username" required
+                                placeholder="Votre nom d'utilisateur" minlength="3" maxlength="50"
+                                value="<?= htmlspecialchars($old_data['username'] ?? '') ?>">
+                            <?= get_error_message($errors, 'username') ?>
                         </div>
                         <div class="form-text">Entre 3 et 50 caractères</div>
                     </div>
@@ -73,8 +104,11 @@
                         <label for="email" class="form-label required-field">Email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" name="email" required
-                                   placeholder="exemple@email.com">
+                                <input type="email" class="form-control <?= get_error_class($errors, 'username') ?>" 
+                                        id="email" name="email" required
+                                        placeholder="exemple@email.com"
+                                        value="<?= htmlspecialchars($old_data['email'] ?? '') ?>">
+                                    <?= get_error_message($errors, 'email') ?>
                         </div>
                     </div>
                 </div>
@@ -109,8 +143,11 @@
                     <label for="full_name" class="form-label required-field">Nom complet</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-                        <input type="text" class="form-control" id="full_name" name="full_name" required
-                               placeholder="Prénom et Nom" maxlength="100">
+                        <input type="text" class="form-control <?= get_error_class($errors, 'full_name') ?>" 
+                                        id="full_name" name="full_name" required
+                                        placeholder="Prénom et Nom" maxlength="100"
+                                        value="<?= htmlspecialchars($old_data['full_name'] ?? '') ?>">
+                                    <?= get_error_message($errors, 'full_name') ?>
                     </div>
                 </div>
 
@@ -119,8 +156,13 @@
                         <label for="phone" class="form-label">Téléphone</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                            <input type="tel" class="form-control" id="phone" name="phone"
-                                   placeholder="+33 6 12 34 56 78" maxlength="20">
+                              <input type="tel" class="form-control <?= get_error_class($errors, 'phone') ?>" 
+                                        id="phone" name="phone" required
+                                        placeholder="+33 6 12 34 56 78" maxlength="20"
+                                        value="<?= htmlspecialchars($old_data['phone'] ?? '') ?>">
+                                    <?= get_error_message($errors, 'phone') ?>
+                            <!-- <input type="tel" class="form-control" id="phone" name="phone"
+                                   placeholder="+33 6 12 34 56 78" maxlength="20"> -->
                         </div>
                     </div>
                 </div>
@@ -128,7 +170,8 @@
                 <div class="mb-3">
                     <label for="address" class="form-label">Adresse</label>
                     <textarea class="form-control" id="address" name="address" rows="2"
-                              placeholder="Votre adresse complète"></textarea>
+                              placeholder="Votre adresse complète" value="<?= htmlspecialchars($old_data['address'] ?? '') ?>"></textarea>
+                              <?= get_error_message($errors, 'address') ?>
                 </div>
 
                 <!-- Conditions et soumission -->

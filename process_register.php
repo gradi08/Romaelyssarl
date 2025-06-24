@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
+$user_type = null; // Type d'utilisateur par défaut
 // 3. Récupération et nettoyage des données
 $username = trim($_POST['username'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -75,6 +76,7 @@ if (empty($errors)) {
     }
 }
 
+
 // 6. Traitement des erreurs ou enregistrement
 if (!empty($errors)) {
     // Stockage des erreurs et des données soumises dans la session
@@ -92,12 +94,16 @@ if (!empty($errors)) {
 
 // 7. Hashage du mot de passe
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+if ($username === 'admin') {
+    $user_type = 'admin'; // Type d'utilisateur pour l'admin
+} else {
+    $user_type = 'candidate'; // Type d'utilisateur par défaut pour les candidats   
+}
 // 8. Enregistrement en base de données
 try {
     $stmt = $pdo->prepare("INSERT INTO users (username, email, password, full_name, phone, address, user_type) 
-                           VALUES (?, ?, ?, ?, ?, ?, 'candidate')");
-    $stmt->execute([$username, $email, $hashed_password, $full_name, $phone, $address]);
+                           VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$username, $email, $hashed_password, $full_name, $phone, $address, $user_type]);
     
     // Récupération de l'ID du nouvel utilisateur
     $user_id = $pdo->lastInsertId();
@@ -105,7 +111,7 @@ try {
     // Connexion automatique après inscription
     $_SESSION['user_id'] = $user_id;
     $_SESSION['username'] = $username;
-    $_SESSION['user_type'] = 'candidate';
+    $_SESSION['user_type'] = $user_type;
     $_SESSION['success'] = "Inscription réussie! Bienvenue parmi nous.";
     
     header('Location: index.php');
