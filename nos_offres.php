@@ -221,6 +221,47 @@ $categories = $pdo->query("SELECT DISTINCT category FROM jobs")->fetchAll();
                 right: -15px;
             }
         }
+            .job-card {
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-img-container {
+        background-color: #f8f9fa;
+    }
+    
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+    
+    .job-card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+    
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: var(--line-clamp, 3);
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .object-fit-cover {
+        object-fit: cover;
+    }
+    
+    .see-more-btn {
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    
+    .see-more-btn:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
 <body>
@@ -282,41 +323,60 @@ $categories = $pdo->query("SELECT DISTINCT category FROM jobs")->fetchAll();
         </div>
         
         <!-- Liste des offres -->
-        <div class="row">
-            <?php foreach ($jobs as $job): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <!-- Image de l'offre -->
-                        <?php if ($job['image_path']): ?>
-                            <img src="<?= htmlspecialchars($job['image_path']) ?>" 
-                                 class="card-img-top" 
-                                 alt="<?= htmlspecialchars($job['title']) ?>">
-                        <?php endif; ?>
-                        
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($job['title']) ?></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
+        <div class="row g-4">
+    <?php foreach ($jobs as $job): ?>
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 job-card shadow-sm border-0 overflow-hidden">
+                <!-- Image de l'offre -->
+                <?php if ($job['image_path']): ?>
+                    <div class="card-img-container position-relative overflow-hidden" style="height: 180px;">
+                        <img src="<?= htmlspecialchars($job['image_path']) ?>" 
+                             class="card-img-top h-100 w-100 object-fit-cover transition-all" 
+                             alt="<?= htmlspecialchars($job['title']) ?>">
+                        <div class="card-img-overlay d-flex align-items-end p-0">
+                            <span class="badge bg-danger bg-opacity-75 text-white mb-2 ms-auto me-2">
                                 <?= htmlspecialchars($job['category']) ?>
-                            </h6>
-                            <p class="card-text">
+                            </span>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <h5 class="card-title fw-bold mb-2 text-truncate"><?= htmlspecialchars($job['title']) ?></h5>
+                        <div class="description-container">
+                            <p class="card-text text-muted mb-2 short-description line-clamp-3" style="--line-clamp: 3;">
                                 <?= nl2br(htmlspecialchars(shortenText($job['description'], 150))) ?>
-
                             </p>
-                            
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">
-                                    Expire le: <?= date('d/m/Y', strtotime($job['expiry_date'])) ?>
-                                </small>
-                                <a href="apply.php?job_id=<?= $job['id'] ?>" 
-                                   class="btn btn-primary">
-                                   Postuler
-                                </a>
+                            <p class="card-text text-muted mb-2 full-description d-none">
+                                <?= nl2br(htmlspecialchars($job['description'])) ?>
+                            </p>
+                        </div>
+                        <a href="job_details.php?id=<?= $job['id'] ?>" class="btn btn-link p-0 text-primary see-more-btn" type="button">
+                            <small>Voir plus</small>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                            <div class="d-flex flex-column">
+                                <small class="text-muted">Date limite</small>
+                                <span class="fw-semibold text-danger">
+                                    <?= date('d/m/Y', strtotime($job['expiry_date'])) ?>
+                                </span>
                             </div>
+                            <a href="apply.php?job_id=<?= $job['id'] ?>" 
+                               class="btn btn-primary rounded-pill px-4 py-2">
+                               <i class="bi bi-send-fill me-2"></i>Postuler
+                            </a>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
+    <?php endforeach; ?>
+</div>
+
     </div>
 </section>
 <footer class="bg-dark text-white pt-5 pb-4">

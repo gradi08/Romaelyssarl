@@ -58,49 +58,165 @@ $jobs = $stmt->fetchAll();
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
 
-        <div class="row">
-            <?php foreach ($jobs as $job): ?>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <?php if ($job['image_path']): ?>
-                            <img src="../../<?= htmlspecialchars($job['image_path']) ?>" class="card-img-top" alt="<?= htmlspecialchars($job['title']) ?>">
-                        <?php endif; ?>
+        <div class="row g-4">
+    <?php foreach ($jobs as $job): ?>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card h-100 shadow-sm border-0 overflow-hidden job-admin-card">
+                <!-- Header avec image et badge de statut -->
+                <div class="card-img-top position-relative" style="height: 180px; background-color: #f8f9fa;">
+                    <?php if ($job['image_path']): ?>
+                        <img src="../../<?= htmlspecialchars($job['image_path']) ?>" 
+                             class="h-100 w-100 object-fit-cover" 
+                             alt="<?= htmlspecialchars($job['title']) ?>">
+                    <?php else: ?>
+                        <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                            <i class="bi bi-image fs-1"></i>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-<?= $job['published'] ? 'success' : 'warning' ?> status-badge cursor-pointer"
+                              onclick="toggleStatus(<?= $job['id'] ?>)"
+                              data-bs-toggle="tooltip" 
+                              title="Cliquer pour changer le statut">
+                            <i class="bi bi-<?= $job['published'] ? 'check-circle' : 'exclamation-triangle' ?> me-1"></i>
+                            <?= $job['published'] ? 'Publié' : 'Non publié' ?>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Corps de la carte -->
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-3">
+                        <h5 class="card-title fw-bold mb-2">
+                            <?= htmlspecialchars($job['title']) ?>
+                        </h5>
                         
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <h5 class="card-title"><?= htmlspecialchars($job['title']) ?></h5>
-                                <span class="badge bg-<?= $job['published'] ? 'success' : 'warning' ?> status-badge"
-                                      onclick="toggleStatus(<?= $job['id'] ?>)">
-                                    <?= $job['published'] ? 'Publié' : 'Non publié' ?>
-                                </span>
-                            </div>
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="badge bg-danger bg-opacity-10 text-danger me-2">
                                 <?= htmlspecialchars($job['category']) ?>
-                            </h6>
+                            </span>
+                            <small class="text-muted">
+                                <i class="bi bi-calendar-event me-1"></i>
+                                <?= date('d/m/Y', strtotime($job['expiry_date'])) ?>
+                            </small>
+                        </div>
+                        
+                        <p class="card-text text-muted mb-3 line-clamp-2">
+                            <?= nl2br(htmlspecialchars(shortenText($job['description'], 100))) ?>
+                        </p>
+                    </div>
+                    
+                    <!-- Footer avec actions -->
+                    <div class="mt-auto pt-3 border-top">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="bi bi-clock-history me-1"></i>
+                                Créé le <?= date('d/m/Y', strtotime($job['created_at'])) ?>
+                            </small>
                             
-                            <p class="card-text">
-                                <?= nl2br(htmlspecialchars(shortenText($job['description'], 100))) ?>
-                            </p>
-                            
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">
-                                    Expire le: <?= date('d/m/Y', strtotime($job['expiry_date'])) ?>
-                                </small>
-                                <div>
-                                    <a href="edit.php?id=<?= $job['id'] ?>" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="applications.php?job_id=<?= $job['id'] ?>" class="btn btn-sm btn-outline-info">
-                                        <i class="bi bi-people"></i> Candidatures
-                                    </a>
-                                </div>
+                            <div class="btn-group" role="group">
+                                <a href="edit.php?id=<?= $job['id'] ?>" 
+                                   class="btn btn-sm btn-outline-primary rounded-start-pill"
+                                   data-bs-toggle="tooltip" 
+                                   title="Modifier">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="applications.php?job_id=<?= $job['id'] ?>" 
+                                   class="btn btn-sm btn-outline-info"
+                                   data-bs-toggle="tooltip" 
+                                   title="Voir candidatures">
+                                    <i class="bi bi-people"></i>
+                                </a>
+                                <a href="#" 
+                                   class="btn btn-sm btn-outline-danger rounded-end-pill"
+                                   onclick="confirmDelete(<?= $job['id'] ?>)"
+                                   data-bs-toggle="tooltip" 
+                                   title="Supprimer">
+                                    <i class="bi bi-trash"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
         </div>
+    <?php endforeach; ?>
+</div>
+
+<style>
+    .job-admin-card {
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .job-admin-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .status-badge {
+        font-size: 0.75rem;
+        padding: 0.35em 0.65em;
+        transition: all 0.2s ease;
+    }
+    
+    .status-badge:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+    }
+    
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .object-fit-cover {
+        object-fit: cover;
+    }
+    
+    .cursor-pointer {
+        cursor: pointer;
+    }
+    
+    .btn-group .btn {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+</style>
+
+<script>
+// Activer les tooltips Bootstrap
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+
+// Fonction pour confirmer la suppression
+function confirmDelete(jobId) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette offre ? Toutes les candidatures associées seront également supprimées.')) {
+        window.location.href = 'delete.php?id=' + jobId;
+    }
+}
+
+// Fonction pour changer le statut (publié/non publié)
+function toggleStatus(jobId) {
+    fetch('toggle_status.php?id=' + jobId)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload(); // Recharger la page pour voir le changement
+            } else {
+                alert('Erreur lors du changement de statut');
+            }
+        });
+}
+</script>
     </div>
 
     <script>

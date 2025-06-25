@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="asset/css/style.css">
+</head>
 <nav class="navbar navbar-expand-lg bg-red ">
     <div class="container-fluid bg-red">
       <a class="navbar-brand nav-link" href="#">Romaelyssarl</a>

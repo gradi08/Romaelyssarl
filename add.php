@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$title, $description, $requirements, $expiry_date, $category, $image_path, $published]);
             
             $_SESSION['success'] = "Offre d'emploi ajoutée avec succès!";
-            header('Location: index.php');
+            header('Location: gestion_offres.php');
             exit();
         } catch(PDOException $e) {
             $error = "Erreur: " . $e->getMessage();
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <div class="d-flex justify-content-between">
-                    <a href="index.php" class="btn btn-outline-secondary">
+                    <a href="gestion_offres.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Retour
                     </a>
                     <button type="submit" class="btn btn-primary">

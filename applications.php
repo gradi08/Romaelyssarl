@@ -78,7 +78,7 @@ function getStatusColor($status) {
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1><i class="bi bi-people-fill"></i> Gestion des Candidatures</h1>
             <?php if ($job_id): ?>
-                <a href="index.php" class="btn btn-outline-secondary">
+                <a href="gestion_offres.php" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left"></i> Retour aux offres
                 </a>
             <?php endif; ?>
