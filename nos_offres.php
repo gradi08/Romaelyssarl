@@ -265,36 +265,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM jobs")->fetchAll();
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-red ">
-    <div class="container-fluid bg-red">
-      <a class="navbar-brand nav-link" href="#">Romaelyssarl</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php#service">Nos services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="nos_offres.php">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="service_domicile.php">Menages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="nettoyage.php">Service nettoyage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="apropos.php">A propos</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <?php include 'includes/header.php'; ?>
     <!-- Hero Section avec fond d'image -->
     <section class="hero-section">
         <h1 class="hero-title">Nos Offres d'Emploi</h1>
@@ -313,9 +284,9 @@ $categories = $pdo->query("SELECT DISTINCT category FROM jobs")->fetchAll();
     
     <!-- Filtre par catégorie -->
         <div class="category-filter mb-4">
-            <a href="jobs.php" class="btn btn-outline-secondary">Toutes</a>
+            <a href="nos_offres.php" class="btn btn-outline-secondary">Toutes</a>
             <?php foreach ($categories as $cat): ?>
-                <a href="jobs.php?category=<?= urlencode($cat['category']) ?>" 
+                <a href="nos_offres.php?category=<?= urlencode($cat['category']) ?>" 
                    class="btn btn-outline-primary">
                    <?= htmlspecialchars($cat['category']) ?>
                 </a>

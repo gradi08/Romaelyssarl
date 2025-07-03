@@ -287,66 +287,301 @@ $jobs = $stmt->fetchAll();
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-red ">
-    <div class="container-fluid bg-red">
-      <a class="navbar-brand nav-link" href="#">Romaelyssarl</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#service">Nos services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="nos_offres.php">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="service_domicile.php">Menages</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="nettoyage.php">Service nettoyage</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="apropos.php">A propos</a>
-          </li>
-        </ul>
-      </div>
+ <!-- Navigation améliorée -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.php">Romaelyssarl</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active px-3" href="index.php">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="#service">Nos services</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3" href="#" id="jobsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Jobs
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="jobsDropdown">
+                        <li><a class="dropdown-item" href="nos_offres.php">Toutes les offres</a></li>
+                        <li><a class="dropdown-item" href="service_domicile.php">Services à domicile</a></li>
+                        <li><a class="dropdown-item" href="nettoyage.php">Services de nettoyage</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3" href="apropos.php">À propos</a>
+                </li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                  <?php if ($_SESSION['user_type'] === 'admin'): ?>
+                    <li class="nav-item">
+                      <a href="dashboard.php" class=" nav-link px-3">Tableau de bord</a>
+                    
+                      </li>
+                                <?php else: ?>   
+                                 <li class="nav-item">
+                    
+                                   <a href="profile.php" class="nav-item">Mon compte</a>
+                </li> 
+                                <?php endif; ?>
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0">
+                        <a href="logout.php" class="btn btn-outline-light">Déconnexion</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0">
+                        <a href="login.php" class="btn btn-light text-danger fw-bold">Connexion</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
     </div>
-  </nav>
-  <div class="container-fluid hero p-0">
-    <img src="asset/img/software-developer-6521720_1280.jpg" class="img-fluid" alt="...">
-    <div class="hero-content">
-      <h2>Bienvenue sur notre plateforme</h2>
-      <h3>Nous croyons que les succès
-        de notre entreprise repose
-        sur :
-      </h3>
-      <h1 style="color:red;">DES TALENTS BIEN CHOISIS ET ACCOMPANÉS</h1>
-      <div>
-        <?php if (isset($_SESSION['user_id'])): ?>
-          <a href="logout.php" class="btn custom-btn me-2">Déconnexion</a>
-          <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin'): ?>
-            <a href="dashboard.php" class="btn custom-btn">Tableau de bord</a>
-          <?php else: ?>   
-          <a href="profile.php" class="btn custom-btn">Mon compte</a>
-          <?php endif; ?>
-        <?php else: ?>
-          <a href="login.php" class="btn custom-btn me-2">Connexion</a>
-          <a href="register.php" class="btn custom-btn">Créer un compte</a>
-        <?php endif; ?>
-      </div>
-      <div class="social-icons text-center py-4">
-        <a href="#" class="bt text-white fs-3 me-3"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="bt text-white fs-3 me-3"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="bt text-white fs-3 me-3"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="bt text-white fs-3"><i class="fab fa-twitter"></i></a>
-      </div>
+</nav>
+
+<!-- Carrousel Héro amélioré -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <!-- Indicateurs -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
     </div>
-  </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active vh-100">
+            <div class="position-relative h-100">
+                <img src="asset/img/software-developer-6521720_1280.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Développeurs">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                    <div class="container">
+                        <h2 class="display-4 fw-light mb-4 animate__animated animate__fadeInDown">Bienvenue sur notre plateforme</h2>
+                        <h3 class="fs-3 mb-4 animate__animated animate__fadeIn animate__delay-1s">Nous croyons que les succès de notre entreprise repose sur :</h3>
+                        <h1 class="display-3 fw-bold text-danger mb-5 animate__animated animate__fadeInUp animate__delay-2s">DES TALENTS BIEN CHOISIS</h1>
+                        
+                        <div class="d-flex justify-content-center gap-3 mb-5">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a href="logout.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Déconnexion</a>
+                                <?php if ($_SESSION['user_type'] === 'admin'): ?>
+                                    <a href="dashboard.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Tableau de bord</a>
+                                <?php else: ?>   
+                                    <a href="profile.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Mon compte</a>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <a href="login.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Connexion</a>
+                                <a href="register.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Créer un compte</a>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item vh-100">
+            <div class="position-relative h-100">
+                <img src="asset/img/686570602ef4f_IMG-20241231-WA0006.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Équipe">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                    <div class="container">
+                        <h2 class="display-4 fw-light mb-4">Une équipe unie</h2>
+                        <h3 class="fs-3 mb-4">Notre force réside dans la collaboration et l'engagement de :</h3>
+                        <h1 class="display-3 fw-bold text-danger mb-5">PROFESSIONNELS PASSIONNÉS</h1>
+                        <!-- Boutons identiques à la première slide -->
+                         <div class="d-flex justify-content-center gap-3 mb-5">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a href="logout.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Déconnexion</a>
+                                <?php if ($_SESSION['user_type'] === 'admin'): ?>
+                                    <a href="dashboard.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Tableau de bord</a>
+                                <?php else: ?>   
+                                    <a href="profile.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Mon compte</a>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <a href="login.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Connexion</a>
+                                <a href="register.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Créer un compte</a>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item vh-100">
+            <div class="position-relative h-100">
+                <img src="asset/img/ai-generated-8881144_1280.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Croissance">
+                <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                    <div class="container">
+                        <h2 class="display-4 fw-light mb-4">Développez votre potentiel</h2>
+                        <h3 class="fs-3 mb-4">Nous offrons des opportunités pour :</h3>
+                        <h1 class="display-3 fw-bold text-danger mb-5">ÉVOLUER ET RÉUSSIR</h1>
+                        <!-- Boutons identiques à la première slide -->
+                         <div class="d-flex justify-content-center gap-3 mb-5">
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <a href="logout.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Déconnexion</a>
+                                <?php if ($_SESSION['user_type'] === 'admin'): ?>
+                                    <a href="dashboard.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Tableau de bord</a>
+                                <?php else: ?>   
+                                    <a href="profile.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Mon compte</a>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <a href="login.php" class="btn btn-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Connexion</a>
+                                <a href="register.php" class="btn btn-outline-light btn-lg rounded-pill px-4 animate__animated animate__zoomIn animate__delay-3s">Créer un compte</a>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contrôles -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+    </button>
+</div>
+
+<!-- Styles améliorés -->
+<style>
+    /* Navigation */
+    .navbar {
+        padding: 1rem 0;
+        transition: all 0.3s;
+    }
+    
+    .navbar.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-link {
+        position: relative;
+        font-weight: 500;
+    }
+    
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: white;
+        transition: all 0.3s;
+        transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 50%;
+    }
+    
+    /* Carrousel */
+    .carousel-caption {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: 8rem;
+    }
+    
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        margin: 0 8px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .carousel-indicators .active {
+        background-color: white;
+        transform: scale(1.3);
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-size: 60%;
+    }
+    
+    /* Social icons */
+    .social-icons a {
+        transition: transform 0.3s;
+        display: inline-block;
+    }
+    
+    .social-icons a:hover {
+        transform: translateY(-5px) scale(1.2);
+        color: #ff4d4f !important;
+    }
+    
+    /* Boutons */
+    .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #dc3545 !important;
+    }
+</style>
+
+<!-- Scripts améliorés -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animation de la navbar au scroll
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Animation des éléments du carrousel
+    const carousel = document.getElementById('heroCarousel');
+    carousel.addEventListener('slide.bs.carousel', function (e) {
+        const activeSlide = e.relatedTarget;
+        const elements = activeSlide.querySelectorAll('.animate__animated');
+        
+        elements.forEach(el => {
+            el.style.opacity = '0';
+        });
+        
+        setTimeout(() => {
+            elements.forEach(el => {
+                el.style.opacity = '1';
+            });
+        }, 100);
+    });
+});
+</script>
+
+<!-- Ajouter dans l'en-tête -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <!-- SECTION POURQUOI NOUS -->
   <section class="bg-light py-5 text-center">
     <div class="container">

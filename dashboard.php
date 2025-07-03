@@ -97,7 +97,7 @@ $recent_jobs = $pdo->query(
                                 </div>
                                 <i class="bi bi-briefcase stat-icon"></i>
                             </div>
-                            <a href="nos_offres.php" class="stretched-link"></a>
+                            <a href="gestion_offres.php" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
