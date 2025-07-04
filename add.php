@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 
                 <div class="d-flex justify-content-between">
-                    <a href="gestion_offres.php" class="btn btn-outline-secondary">
+                    <a href="dashboard.php" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Retour
                     </a>
                     <button type="submit" class="btn btn-primary">

@@ -19,6 +19,7 @@ $jobs = $stmt->fetchAll();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="asset/css/style.css">
+  <link rel="stylesheet" href="asset/css/bootstrap.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -376,10 +377,11 @@ $jobs = $stmt->fetchAll();
                         </div>
                         
                         <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/romaelyss" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/romaelysssarl?igsh=OW04ZTR1NGIwbHFm&utm_source=ig_contact_invite" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://x.com/Romaelyss?t=kXZsjiMn9pihMlvqZcpX_Q&s=09" class="text-white mx-2 fs-4"><i class="fab fa-x"></i></a>
+                            <a href="https://www.youtube.com/@romaelyssarl/videos" class="text-white mx-2 fs-4"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -411,10 +413,11 @@ $jobs = $stmt->fetchAll();
                         </div>
                         
                         <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/romaelyss" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/romaelysssarl?igsh=OW04ZTR1NGIwbHFm&utm_source=ig_contact_invite" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://x.com/Romaelyss?t=kXZsjiMn9pihMlvqZcpX_Q&s=09" class="text-white mx-2 fs-4"><i class="fab fa-x"></i></a>
+                            <a href="https://www.youtube.com/@romaelyssarl/videos" class="text-white mx-2 fs-4"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -446,10 +449,11 @@ $jobs = $stmt->fetchAll();
                         </div>
                         
                         <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="text-white mx-2 fs-4"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/romaelyss" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/romaelysssarl?igsh=OW04ZTR1NGIwbHFm&utm_source=ig_contact_invite" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://x.com/Romaelyss?t=kXZsjiMn9pihMlvqZcpX_Q&s=09" class="text-white mx-2 fs-4"><i class="fab fa-x"></i></a>
+                            <a href="https://www.youtube.com/@romaelyssarl/videos" class="text-white mx-2 fs-4"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -1039,10 +1043,10 @@ document.addEventListener('DOMContentLoaded', function() {
         height: 10px;
     }
     
-    .indicator-btn.active, .indicator-btn:hover {
+    /* .indicator-btn.active, .indicator-btn:hover {
         background-color: #dc3545 !important;
         transform: scale(1.2);
-    }
+    } */
 </style>
 
 

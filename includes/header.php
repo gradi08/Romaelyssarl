@@ -1,5 +1,7 @@
 <head>
     <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/bootstrap.css">
+    <script src="asset/css/bootstrap.bundle.js"></script>
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm fixed-top">
     <div class="container">

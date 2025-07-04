@@ -39,6 +39,7 @@ if (isset($_GET['delete'])) {
 </head>
 <body>
     <!--  -->
+
     <div class="container-fluid">
         <div class="row">
             
@@ -47,6 +48,9 @@ if (isset($_GET['delete'])) {
                     <h1 class="h2">Gestion des offres d'emploi</h1>
                     <a href="add.php" class="btn btn-danger">
                         <i class="bi bi-plus-circle"></i> Ajouter une offre
+                    </a>
+                    <a href="dashboard.php" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Retour
                     </a>
                 </div>
 
@@ -84,11 +88,20 @@ if (isset($_GET['delete'])) {
                                                class="btn btn-sm btn-outline-primary">
                                                <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="tous_offres.php?delete=<?= $job['id'] ?>" 
+                                                <a href="#" 
+   class="btn btn-sm btn-outline-danger"
+   data-bs-toggle="modal" 
+   data-bs-target="#deleteConfirmModal"
+   data-job-id="<?= $job['id'] ?>"
+   data-bs-toggle="tooltip" 
+   title="Supprimer">
+    <i class="bi bi-trash"></i>
+</a>
+                                            <!-- <a href="tous_offres.php?delete=<?= $job['id'] ?>" 
                                                class="btn btn-sm btn-outline-danger" 
                                                onclick="return confirm('Supprimer cette offre ?')">
                                                <i class="bi bi-trash"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -100,7 +113,47 @@ if (isset($_GET['delete'])) {
             </main>
         </div>
     </div>
+     <!-- Modal de confirmation -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteConfirmModalLabel">Confirmer la suppression</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir supprimer cette offre ? Cette action est irréversible.</p>
+        <p class="fw-bold">Toutes les candidatures associées seront également supprimées.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <a id="confirmDeleteBtn" href="#" class="btn btn-danger">Supprimer définitivement</a>
+      </div>
+    </div>
+  </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteConfirmModal');
+    
+    deleteModal.addEventListener('show.bs.modal', function(event) {
+        // Boutton qui a déclenché le modal
+        const button = event.relatedTarget;
+        // Extraction de l'ID depuis l'attribut data-job-id
+        const jobId = button.getAttribute('data-job-id');
+        // Mise à jour du lien de suppression
+        document.getElementById('confirmDeleteBtn').href = `delete.php?id=${jobId}`;
+    });
+    
+    // Tooltips Bootstrap
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
 </body>
 </html>

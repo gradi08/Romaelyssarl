@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
     } catch(PDOException $e) {
         $_SESSION['error'] = "Erreur lors de la mise à jour: " . $e->getMessage();
     }
+
 }
 ?>
 
@@ -144,26 +145,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
 
             <div class="document-section">
                 <h4 class="border-bottom pb-2">Lettre de motivation</h4>
-                <div class="mb-4">
-                    <?= nl2br(htmlspecialchars($application['cover_letter'])) ?>
-                </div>
-
-                <h4 class="border-bottom pb-2">Curriculum Vitae</h4>
-                <div class="d-flex align-items-center">
+                 <!-- <div class="d-flex align-items-center">
                     <i class="bi bi-file-earmark-pdf fs-1 me-3 text-danger"></i>
                     <div>
-                        <p class="mb-1">CV du candidat</p>
-                        <a href="../../assets/img/<?= htmlspecialchars($application['cv_path']) ?>" 
+                        <p class="mb-1">lettre du candidat</p>
+                        <a href="/asset/lettre/<?= $application['cover_letter'] ?>" 
                            class="btn btn-sm btn-primary" download>
                            <i class="bi bi-download"></i> Télécharger le CV
                         </a>
                     </div>
-                </div>
+                </div> -->
+                <div class="d-flex align-items-center">
+    <i class="bi bi-file-earmark-pdf fs-1 me-3 text-danger"></i>
+    <div>
+        <p class="mb-1">lettre du candidat</p>
+        <?php 
+        $cv_path = 'asset/lettre/' . basename($application['cover_letter']);
+        $full_path = $_SERVER['DOCUMENT_ROOT'] . '/' . ltrim($cv_path, '/');
+        
+        if (file_exists($full_path) && is_file($full_path)): ?>
+            <a href="<?= htmlspecialchars($cv_path) ?>" 
+               class="btn btn-sm btn-primary" 
+               download="<?= htmlspecialchars(basename($application['cover_letter'])) ?>">
+               <i class="bi bi-download"></i> Télécharger le CV
+            </a>
+            <small class="text-muted d-block mt-1">
+                <?= round(filesize($full_path) / 1024) ?> KB
+            </small>
+        <?php else: ?>
+            <span class="badge bg-warning text-dark">Fichier indisponible</span>
+            <?php error_log("CV file not found: " . $full_path); ?>
+        <?php endif; ?>
+    </div>
+</div>
+                <!-- <div class="mb-4">
+                    
+                </div> -->
+
+                <h4 class="border-bottom pb-2">Curriculum Vitae</h4>
+                <div class="d-flex align-items-center">
+    <i class="bi bi-file-earmark-pdf fs-1 me-3 text-danger"></i>
+    <div>
+        <p class="mb-1">CV du candidat</p>
+        <?php 
+        $cv_path = 'asset/cvs/' . basename($application['cv_path']);
+        $full_path = $_SERVER['DOCUMENT_ROOT'] . '/' . ltrim($cv_path, '/');
+        
+        if (file_exists($full_path) && is_file($full_path)): ?>
+            <a href="<?= htmlspecialchars($cv_path) ?>" 
+               class="btn btn-sm btn-primary" 
+               download="<?= htmlspecialchars(basename($application['cv_path'])) ?>">
+               <i class="bi bi-download"></i> Télécharger le CV
+            </a>
+            <small class="text-muted d-block mt-1">
+                <?= round(filesize($full_path) / 1024) ?> KB
+            </small>
+        <?php else: ?>
+            <span class="badge bg-warning text-dark">Fichier indisponible</span>
+            <?php error_log("CV file not found: " . $full_path); ?>
+        <?php endif; ?>
+    </div>
+</div>
             </div>
 
             <form method="POST" class="mt-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="index.php<?= isset($_GET['job_id']) ? '?job_id=' . intval($_GET['job_id']) : '' ?>" 
+                    <a href="dashboard.php<?= isset($_GET['job_id']) ? '?job_id=' . intval($_GET['job_id']) : '' ?>" 
                        class="btn btn-outline-secondary">
                        <i class="bi bi-arrow-left"></i> Retour à la liste
                     </a>

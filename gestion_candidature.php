@@ -96,10 +96,27 @@ $applications = $stmt->fetchAll();
                                 <a href="view.php?id=<?= $app['id'] ?>" class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-eye"></i> Voir
                                 </a>
-                                <a href="../../assets/img/<?= htmlspecialchars($app['cv_path']) ?>" 
+                                <!-- <a href="/asset/cvs/<?= htmlspecialchars($app['cv_path']) ?>" 
                                    class="btn btn-sm btn-outline-success" download>
                                     <i class="bi bi-download"></i> CV
-                                </a>
+                                </a> -->
+                                <?php 
+        $cv_path = 'asset/cvs/' . basename($app['cv_path']);
+        $full_path = $_SERVER['DOCUMENT_ROOT'] . '/' . ltrim($cv_path, '/');
+        
+        if (file_exists($full_path) && is_file($full_path)): ?>
+            <a href="<?= htmlspecialchars($cv_path) ?>" 
+               class="btn btn-sm btn-outline-success" 
+               download="<?= htmlspecialchars(basename($app['cv_path'])) ?>">
+               <i class="bi bi-download"></i> CV
+            </a>
+            <small class="text-muted d-block mt-1">
+                <?= round(filesize($full_path) / 1024) ?> KB
+            </small>
+        <?php else: ?>
+            <span class="badge bg-warning text-dark">Fichier indisponible</span>
+            <?php error_log("CV file not found: " . $full_path); ?>
+        <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

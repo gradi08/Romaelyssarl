@@ -37,7 +37,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cover_letter = trim($_POST['cover_letter']);
+    $cover_letter = $_FILES['cover_letter']['name'];
     
     // Validation
     if (empty($cover_letter)) {
@@ -50,6 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cv_name = uniqid() . '_' . basename($_FILES['cv']['name']);
         $target_file = $upload_dir . $cv_name;
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+        // Traitement du fichier lettre de motivation
+        $upload_dirs = 'asset/lettre/';
+        $cv_names = uniqid() . '_' . basename($_FILES['cover_letter']['name']);
+        $target_files = $upload_dirs . $cv_names;
+        $file_types = strtolower(pathinfo($target_files, PATHINFO_EXTENSION));
         
         // Vérifier le type de fichier
         $allowed_types = ['pdf', 'doc', 'docx'];
@@ -57,11 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Seuls les fichiers PDF, DOC et DOCX sont autorisés";
         } elseif ($_FILES['cv']['size'] > 2000000) { // 2MB max
             $error = "Le fichier est trop volumineux (max 2MB)";
-        } elseif (move_uploaded_file($_FILES['cv']['tmp_name'], $target_file)) {
+        } elseif (move_uploaded_file($_FILES['cv']['tmp_name'], $target_file) && move_uploaded_file($_FILES['cover_letter']['tmp_name'], $target_files)) {
             // Enregistrer la candidature
             try {
                 $stmt = $pdo->prepare("INSERT INTO applications (user_id, job_id, cover_letter, cv_path) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$user_id, $job_id, $cover_letter, 'asset/cvs/' . $cv_name]);
+                $stmt->execute([$user_id, $job_id, 'asset/lettre/' . $cv_names, 'asset/cvs/' . $cv_name]);
                 
                 $_SESSION['success'] = "Votre candidature a été envoyée avec succès!";
                 header('Location: index.php');
@@ -120,7 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="cover_letter" class="form-label">Lettre de motivation *</label>
-                    <textarea class="form-control" id="cover_letter" name="cover_letter" rows="8" required><?= isset($_POST['cover_letter']) ? htmlspecialchars($_POST['cover_letter']) : '' ?></textarea>
+                    <input type="file" class="form-control" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx" required>
+                    <div class="form-text">Taille maximale: 2MB</div>
                 </div>
                 
                 <div class="mb-4">
