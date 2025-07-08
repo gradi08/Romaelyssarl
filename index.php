@@ -291,7 +291,7 @@ $jobs = $stmt->fetchAll();
  <!-- Navigation améliorée -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger shadow-sm fixed-top">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="index.php">Romaelyssarl</a>
+        <a class="navbar-brand fw-bold fs-4" href="index.php"><img src="asset/img/LOGO_1.png" alt="Logo Romaelyss gradi" class="mb-3" style="max-width: 80px;"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
