@@ -15,7 +15,7 @@
                     <a class="nav-link active px-3" href="index.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3" href="#service">Nos services</a>
+                    <a class="nav-link px-3" href="index.php#service">Nos services</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle px-3" href="#" id="jobsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

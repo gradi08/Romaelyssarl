@@ -106,69 +106,7 @@ require_once 'includes/functions.php';
       </div>
     </div>
   </section>
-<footer class="bg-dark text-white pt-5 pb-4">
-    <div class="container">
-    <div class="row gy-4">
-      <!-- Logo et description -->
-      <div class="col-md-4">
-        <img src="logo.png" alt="Logo Romaelyss" class="mb-3" style="max-width: 160px;">
-        <p class="mb-3">
-          Romaelyss est une entreprise dynamique et innovante, spécialisée dans le recrutement, le placement et la gestion du personnel.
-        </p>
-        <div class="d-flex gap-2">
-          <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-          <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <div class="col-md-2">
-        <h5 class="fw-semibold mb-3">Navigation</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-white-50 text-decoration-none">Accueil</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Qui sommes-nous ?</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Notre mission</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Nos Services</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Nos atouts</a></li>
-        </ul>
-      </div>
-
-      <!-- Liens rapides -->
-      <div class="col-md-3">
-        <h5 class="fw-semibold mb-3">Liens rapides</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-white-50 text-decoration-none">Nous contacter</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Nos secteurs d'intervention</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Service nettoyage</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">Pourquoi nous ?</a></li>
-          <li><a href="#" class="text-white-50 text-decoration-none">À propos</a></li>
-        </ul>
-      </div>
-
-      <!-- Heures de travail -->
-      <div class="col-md-3">
-        <h5 class="fw-semibold mb-3">Heure de travail</h5>
-        <p class="mb-1"><i class="bi bi-clock me-2"></i>Disponible 24h/24</p>
-        <p class="text-white-50">
-          Chez Romaelyss Sarl, nous croyons que le succès de votre entreprise repose sur des talents bien choisis et bien accompagnés.
-          Ensemble, construisons l’avenir.
-        </p>
-        <a href="#" class="btn btn-danger mt-2">
-          <i class="bi bi-telephone-fill me-2"></i>Contactez-nous
-        </a>
-      </div>
-    </div>
-
-    <hr class="border-secondary mt-5">
-
-    <div class="text-center text-white-50">
-      &copy; 2025 Romaelyss Sarl • Tous droits réservés<br>
-      <span>Design par <a href="https://menjidrc.com/" style="text-decoration: none;" class="text-white">Osee kalala</a></span>
-    </div>
-  </div>
-</footer>
+  <?php include 'includes/footer.php'; ?>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   <script>
     const track = document.getElementById('carousel-track');
