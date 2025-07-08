@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de Facture - Menji Drc</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      max-width: 700px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+    }
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid #ddd;
+      padding: 6px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #004080;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🧾 Générateur de facture PDF - Menji Drc</h2>
+
+  <form id="factureForm">
+    <label>Nom du client :</label>
+    <input type="text" id="client" required>
+
+    <label>Projet :</label>
+    <input type="text" id="projet" required>
+
+    <label>Date de la facture :</label>
+    <input type="date" id="date" required>
+
+    <label>Détails des services (description / durée / montant):</label>
+    <table id="servicesTable">
+      <tr>
+        <th>Description</th>
+        <th>Durée</th>
+        <th>Montant (USD)</th>
+      </tr>
+      <tr>
+        <td><input type="text" value="Analyse du cahier des charges"></td>
+        <td><input type="text" value="1 Semaine"></td>
+        <td><input type="number" value="200"></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="Conception UI/UX et maquettage"></td>
+        <td><input type="text" value="1 Semaine"></td>
+        <td><input type="number" value="300"></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="Développement de l'application"></td>
+        <td><input type="text" value="1 Mois"></td>
+        <td><input type="number" value="500"></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="Tests et corrections"></td>
+        <td><input type="text" value="2 Semaines"></td>
+        <td><input type="number" value="300"></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="Site Web (offert)"></td>
+        <td><input type="text" value="1 Semaine"></td>
+        <td><input type="number" value="0"></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="Maintenance (offerte)"></td>
+        <td><input type="text" value="6 Mois"></td>
+        <td><input type="number" value="0"></td>
+      </tr>
+    </table>
+
+    <button type="button" onclick="generatePDF()">📥 Télécharger la facture</button>
+  </form>
+
+  <script>
+    // Déclarer jsPDF comme variable globale
+    const { jsPDF } = window.jspdf;
+
+    function generatePDF() {
+      const doc = new jsPDF();
+
+      const client = document.getElementById("client").value;
+      const projet = document.getElementById("projet").value;
+      const date = new Date(document.getElementById("date").value).toLocaleDateString("fr-FR");
+      const factureNum = "MENJI-" + Math.floor(100 + Math.random() * 900);
+
+      const rows = Array.from(document.querySelectorAll("#servicesTable tr")).slice(1);
+      const items = rows.map(row => {
+        const cells = row.querySelectorAll("input");
+        return {
+          desc: cells[0].value,
+          duree: cells[1].value,
+          montant: parseInt(cells[2].value) || 0
+        };
+      });
+
+      const total = items.reduce((sum, item) => sum + item.montant, 0);
+
+      // Logo (simple forme bleue)
+      doc.setFillColor(0, 0, 128);
+      doc.rect(15, 10, 4, 25, "F");
+      doc.rect(21, 10, 4, 18, "F");
+      doc.rect(27, 10, 4, 10, "F");
+
+      // Titre
+      doc.setFontSize(18);
+      doc.setTextColor(0, 0, 128);
+      doc.text("Menji Drc", 35, 15);
+
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      doc.text("Adresse: Bima 22, Q/ Commerciale, C/Lemba", 35, 20);
+      doc.text("Téléphone: +243 893 572 418", 35, 25);
+      doc.text("Email: contact@menji.drc", 35, 30);
+
+      // Infos facture
+      doc.setFontSize(11);
+      doc.setTextColor(0, 0, 128);
+      doc.text(`Facture N° : ${factureNum}`, 15, 45);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Date : ${date}`, 15, 50);
+      doc.text(`Client : ${client}`, 15, 55);
+      doc.text(`Projet : ${projet}`, 15, 60);
+
+      // Tableau des services
+      const tableData = items.map(item => [item.desc, item.duree, `${item.montant}$`]);
+
+      doc.autoTable({
+        startY: 70,
+        head: [["Description", "Durée", "Montant (USD)"]],
+        body: tableData,
+        theme: 'grid',
+        headStyles: { fillColor: [0, 0, 128] },
+      });
+
+      // Total
+      const finalY = doc.lastAutoTable.finalY + 10;
+      doc.setFontSize(12);
+      doc.setFillColor(230, 230, 230);
+      doc.rect(15, finalY, 130, 10, "F");
+      doc.text("Total", 20, finalY + 7);
+      doc.text(`${total}$`, 170, finalY + 7, null, null, "right");
+
+      // Conditions
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 128);
+      doc.text("Conditions et modalités de paiement", 15, finalY + 20);
+      doc.setTextColor(0, 0, 0);
+      const conditions = [
+        `- Un acompte de 30% (${(total * 0.3).toFixed(0)}$) est dû avant le début des travaux.`,
+        `- Le solde de 70% (${(total * 0.7).toFixed(0)}$) est dû à la livraison de l'application.`,
+        "- L'argent versé pour ce projet n'est pas remboursable, même en cas d'annulation du contrat."
+      ];
+      conditions.forEach((txt, i) => {
+        doc.text(txt, 15, finalY + 28 + i * 6);
+      });
+
+      // Signature
+      doc.setFont("helvetica", "italic");
+      doc.text("Signé par Shekinah Kalala (CEO)", 15, finalY + 50);
+
+      doc.save(`facture-${factureNum}.pdf`);
+    }
+  </script>
+</body>
+</html>

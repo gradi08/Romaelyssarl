@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Ajouter dans l'en-tête -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <!-- SECTION POURQUOI NOUS -->
-  <section class="bg-light py-5 text-center">
+  <section class="bg-light py-5 text-center" id="vous">
     <div class="container">
       <h2 class="fw-bold text-danger mb-3 position-relative d-inline-block">
         <span class="line-left me-3"></span>
@@ -638,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <section class="position-relative text-white">
     <img src="asset/img/ai-generated-8881144_1280.jpg" class="w-100 img-fluid object-cover" alt="À propos" style="height: 100vh; max-height: 700px;">
 
-    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, 0.6);">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" id="nous" style="background: rgba(0, 0, 0, 0.6);">
       <div class="container px-3 px-md-5">
         <div class="row justify-content-center">
           <div class="col-12 col-md-10 col-lg-8 text-center">
@@ -1176,27 +1176,34 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="row gy-4">
         <!-- Logo et description -->
         <div class="col-md-4">
-          <img src="logo.png" alt="Logo Romaelyss" class="mb-3" style="max-width: 160px;">
+          <img src="asset/img/LOGO_1.png" alt="Logo Romaelyss gradi" class="mb-3" style="max-width: 160px;">
           <p class="mb-3">
             Romaelyss est une entreprise dynamique et innovante, spécialisée dans le recrutement, le placement et la gestion du personnel.
           </p>
           <div class="d-flex gap-2">
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/romaelyss" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/romaelysssarl?igsh=OW04ZTR1NGIwbHFm&utm_source=ig_contact_invite" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="WhatsApp"><i class="bi bi-instagram"></i></a>
+            <a href="https://wa.me/243812388151" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="WhatsApp" target="_blank"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://x.com/Romaelyss?t=kXZsjiMn9pihMlvqZcpX_Q&s=09" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="x"><i class="bi bi-x"></i></a>
+            <a href="https://www.youtube.com/@romaelyssarl/videos" class="btn btn-outline-light btn-sm rounded-circle btn-social" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
+          <!-- <div class="social-icons animate__animated animate__fadeIn animate__delay-4s">
+                            <a href="https://www.facebook.com/romaelyss" class="text-white mx-2 fs-4"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/romaelysssarl?igsh=OW04ZTR1NGIwbHFm&utm_source=ig_contact_invite" class="text-white mx-2 fs-4"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="text-white mx-2 fs-4"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://x.com/Romaelyss?t=kXZsjiMn9pihMlvqZcpX_Q&s=09" class="text-white mx-2 fs-4"><i class="fab fa-x"></i></a>
+                            <a href="https://www.youtube.com/@romaelyssarl/videos" class="text-white mx-2 fs-4"><i class="fab fa-youtube"></i></a>
+                        </div> -->
         </div>
 
         <!-- Navigation -->
         <div class="col-md-2">
           <h5 class="fw-semibold mb-3">Navigation</h5>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white-50 text-decoration-none">Accueil</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Qui sommes-nous ?</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Notre mission</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Nos Services</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Nos atouts</a></li>
+            <li><a href="index.php" class="text-white-50 text-decoration-none">Accueil</a></li>
+            <li><a href="#nous" class="text-white-50 text-decoration-none">Qui sommes-nous ?</a></li>
+            <li><a href="#vous" class="text-white-50 text-decoration-none">Pourquoi nous ?</a></li>
+            <li><a href="#service" class="text-white-50 text-decoration-none">Nos Services</a></li>
           </ul>
         </div>
 
@@ -1204,11 +1211,11 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="col-md-3">
           <h5 class="fw-semibold mb-3">Liens rapides</h5>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white-50 text-decoration-none">Nous contacter</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Nos secteurs d'intervention</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Service nettoyage</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">Pourquoi nous ?</a></li>
-            <li><a href="#" class="text-white-50 text-decoration-none">À propos</a></li>
+            <li><a href="nos_offres.php" class="text-white-50 text-decoration-none">Toutes les offres</a></li>
+            <li><a href="service_domicile.php" class="text-white-50 text-decoration-none">Services à domicile</a></li>
+            <li><a href="nettoyage.php" class="text-white-50 text-decoration-none">Service nettoyage</a></li>
+            
+            <li><a href="apropos.php" class="text-white-50 text-decoration-none">À propos</a></li>
           </ul>
         </div>
 
@@ -1220,8 +1227,8 @@ document.addEventListener('DOMContentLoaded', function() {
             Chez Romaelyss Sarl, nous croyons que le succès de votre entreprise repose sur des talents bien choisis et bien accompagnés.
             Ensemble, construisons l’avenir.
           </p>
-          <a href="#" class="btn btn-danger mt-2">
-            <i class="bi bi-telephone-fill me-2"></i>Contactez-nous
+          <a href="https://wa.me/243812388151" class="btn btn-danger mt-2">
+            <i class="fab fa-whatsapp me-2"></i>Contactez-nous
           </a>
         </div>
       </div>

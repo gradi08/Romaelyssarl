@@ -519,12 +519,16 @@ section {
 }
 
 .btn-social:hover {
-    background-color: #dc3545 !important;
+    /* background-color: #dc3545 !important; */
     /* Rouge Bootstrap */
     color: white !important;
     border-color: #dc3545 !important;
 }
-
+.list-unstyled a:hover{
+    /* background-color: #dc3545 !important; */
+    /* Rouge Bootstrap */
+    color: #dc3545 !important;
+}
 @media (max-width: 767px) {
     .section-title {
         font-size: 2rem;
