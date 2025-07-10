@@ -325,7 +325,7 @@ $jobs = $stmt->fetchAll();
                                 <?php else: ?>   
                                  <li class="nav-item">
                     
-                                   <a href="profile.php" class="nav-item">Mon compte</a>
+                                   <a href="profile.php" class="nav-link px-3">Mon compte</a>
                 </li> 
                                 <?php endif; ?>
                     <li class="nav-item ms-lg-3 my-2 my-lg-0">
