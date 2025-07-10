@@ -109,13 +109,24 @@ try {
     $user_id = $pdo->lastInsertId();
     
     // Connexion automatique après inscription
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION['username'] = $username;
-    $_SESSION['user_type'] = $user_type;
-    $_SESSION['success'] = "Inscription réussie! Bienvenue parmi nous.";
-    
-    header('Location: index.php');
-    exit();
+    if ($user_type === "admin") {
+        # code...
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = $username;
+        $_SESSION['user_type'] = $user_type;
+        $_SESSION['success'] = "Inscription réussie! Bienvenue parmi nous.";
+        
+        header('Location: dashboard.php');
+        exit();
+    }else{
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['username'] = $username;
+        $_SESSION['user_type'] = $user_type;
+        $_SESSION['success'] = "Inscription réussie! Bienvenue parmi nous.";
+        
+        header('Location: index.php');
+        exit();
+    }
     
 } catch (PDOException $e) {
     $_SESSION['register_errors']['database'] = "Erreur lors de l'inscription: " . $e->getMessage();
